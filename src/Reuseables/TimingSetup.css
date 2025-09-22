@@ -1,0 +1,83 @@
+.timing-setup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.timing-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.day-dropdown {
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  min-width: 120px;
+}
+
+.shift-container {
+  display: flex;
+  gap: 8px;
+}
+
+.shift-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #fff;
+  min-width: 80px;
+  text-align: center;
+  transition: 0.2s ease-in-out;
+}
+
+.shift-box:hover {
+  background-color: #f0f0f0;
+}
+
+.shift-box.selected {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.time-inputs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.time-inputs input {
+  padding: 2px 4px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-row-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.add-row-btn:hover {
+  background-color: #218838;
+}

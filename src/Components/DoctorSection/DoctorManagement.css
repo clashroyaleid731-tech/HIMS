@@ -1,0 +1,581 @@
+.management-container {
+background-color: rgb(255, 255, 255); 
+color: #212121;
+padding: 24px;
+font-family: sans-serif;
+min-height: 100vh;
+}
+
+.management-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 24px;
+}
+
+.management-header h1 {
+font-size: 2em;
+margin: 0;
+}
+
+.search-bar {
+background-color: rgb(255, 255, 255);
+color: #625f5f;
+border: 1px solid #444;
+padding: 8px 12px;
+border-radius: 4px;
+min-width: 250px;
+}
+
+/* NEW: The main rectangular panel */
+.management-panel {
+background-color: #ffffff;
+border: 1px solid #444;
+border-radius: 8px;
+padding: 24px;
+}
+
+/* Tabs Styling */
+.tabs {
+margin-bottom: 5px;
+border-bottom: 1px solid #444;
+}
+
+.tabs button {
+background-color: transparent;
+color: #636363;
+border: none;
+border-bottom: 3px solid transparent; 
+padding: 10px 20px;
+font-size: 1em;
+cursor: pointer;
+margin-right: 10px;
+margin-bottom: -1px; 
+transition: all 0.2s ease-in-out;
+}
+
+.tabs button:hover {
+color: #000000;
+}
+
+.tabs button.active {
+border-bottom-color: #00bfa5; 
+color: #000000;
+font-weight: bold;
+}
+
+/* Content Area Styling (Simplified) */
+.content-area {
+min-height: 400px;
+}
+
+/* Form Styling (Unchanged from before) */
+.form-container h2 { border-bottom: 1px solid #000000; padding-bottom: 8px; margin-top: 24px; margin-bottom: 16px; }
+.form-container h2:first-child { margin-top: 0; }
+.form-group { display: flex; flex-direction: column; }
+.form-grid-tri { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; margin-bottom: 10px; margin-right: auto; }
+.form-group label { margin-bottom: 5px; font-weight: bold; color: #000000; }
+.form-group input, .form-group select, .form-group textarea { background-color: #ffffff; color: #000000; border: 1px solid #000000; padding: 10px; border-radius: 4px; width: 100%; box-sizing: border-box; }
+.form-group input[type="radio"] { width: auto; margin-right: 10px; }
+.gender-group div { padding-top: 10px; }
+.form-group textarea { min-height: 80px; resize: vertical; }
+
+
+/* List/Table Styling */
+.list-container { width: 100%; }
+.doctors-table { width: 100%; border-collapse: collapse; }
+.doctors-table th, .doctors-table td { padding: 12px; border-bottom: 1px solid #000000; text-align: left; }
+.doctors-table th { background-color: #ffffff; }
+.doctors-table tr:hover { background-color: #b7b7b7; }
+
+/* NEW: Edit button styling */
+.edit-button {
+border: 1px solid #00bfa5;
+color: #00bfa5;
+padding: 6px 12px;
+border-radius: 4px;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+}
+.edit-button:hover {
+background-color: #00bfa5;
+color: #1e1e1e;
+}
+
+/* Footer & Save Button */
+.management-footer {
+margin-top: 10px;
+text-align: right;
+padding-top: 10px;
+}
+
+.footer-text {
+text-align: left;
+color: #231f1f;
+font-style: italic;
+margin-top: 24px;
+}
+
+.save-button {
+background-color: #19a001;
+color: #000000;
+border: none;
+padding: 12px 30px;
+font-size: 1.1em;
+font-weight: bold;
+border-radius: 4px;
+cursor: pointer;
+}
+.save-button:hover {
+background-color: #05c908;
+color: #ffffff;
+}
+
+.qualification-row {
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 10px;
+margin-bottom: 10px; 
+}
+
+.qualification-row input {
+flex-grow: 1; 
+}
+
+.remove-button {
+background-color: #ff0000; 
+color: #ff8787; 
+border: 1px solid #336e63;
+font-size: 1.2em;
+font-weight: bold;
+cursor: pointer;
+border-radius: 4px;
+width: 42px;
+height: 42px;
+padding: 0;
+line-height: 42px; 
+transition: all 0.2s ease-in-out;
+}
+
+.remove-button:hover {
+background-color: #b20000;
+color:#ffa2a2;
+}
+
+.add-button {
+background: none;
+border: none;
+color: #00bfa5; 
+font-size: 0.9em;
+font-weight: bold;
+cursor: pointer;
+padding: 8px 0; 
+align-self: flex-start; 
+margin-top: 8px;
+}
+
+.add-button:hover {
+text-decoration: underline;
+}
+
+
+.scroller-wrapper {
+display: flex;
+flex-direction: column;
+height: 100%; 
+}
+
+/* All the previous styles for .scroller-form-container, .form-section, .scroller-footer, etc. remain exactly the same */
+.scroller-form-container {
+display: flex;
+overflow-x: auto;
+scroll-snap-type: x mandatory;
+scroll-behavior: smooth;
+-webkit-overflow-scrolling: touch;
+scrollbar-width: none;
+flex-grow: 1;
+}
+.scroller-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+
+}
+.scroller-form-container::-webkit-scrollbar {
+display: none;
+}
+
+.form-section {
+flex: 0 0 100%;
+scroll-snap-align: start;
+padding: 5px;
+box-sizing: border-box;
+overflow-y: auto;
+margin-right: 10px;
+}
+.modal-overlay {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(159, 148, 148, 0.7);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 1000;
+}
+
+.modal-content {
+background-color: #ffffff;
+padding: 24px;
+border-radius: 8px;
+border: 1px solid #444;
+width: 90%;
+max-width: 500px;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px solid #444;
+padding-bottom: 16px;
+margin-bottom: 16px;
+}
+
+.modal-header h2 {
+margin: 0;
+font-size: 1.5em;
+}
+
+.modal-close-button {
+background: none;
+border: none;
+color: #aaa;
+font-size: 2em;
+line-height: 1;
+cursor: pointer;
+}
+
+.modal-body p {
+line-height: 1.6;
+}
+
+.modal-footer {
+display: flex;
+justify-content: flex-end;
+gap: 12px;
+border-top: 1px solid #444;
+padding-top: 16px;
+margin-top: 24px;
+}
+
+/* Modal Button Styles */
+.modal-button-primary,
+.modal-button-secondary,
+.modal-button-danger {
+padding: 10px 20px;
+border-radius: 4px;
+border: none;
+font-weight: bold;
+cursor: pointer;
+}
+
+.modal-button-primary {
+background-color: #00bfa5;
+color: #1e1e1e;
+}
+
+.modal-button-secondary {
+background-color: #444;
+color: #f0f0f0;
+}
+
+.modal-button-danger {
+background-color: #d9534f;
+color: #fff;
+}
+
+.delete-button {
+background: transparent;
+border: 1px solid #d9534f;
+color: #d9534f;
+padding: 6px 12px;
+border-radius: 4px;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+margin-left: 8px;
+}
+
+.delete-button:hover {
+background-color: #d9534f;
+color: #fff;
+}
+
+.nav-button {
+  border: 1px solid #00bfa5; /* Or your theme color */
+  background: transparent;
+  color: #00bfa5; /* Or your theme color */
+  padding: 10px 30px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #00bfa5; /* Or your theme color */
+  color: #121212; /* Or your background color */
+}
+
+
+/* --- NEW: Styles for the Two-Column Section  use if needed --- */
+.section-split-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr; /* Creates two equal columns */
+  gap: 10px; /* The space between the two columns */
+  align-items: start;
+}
+
+.split-column h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+
+
+
+
+
+/* --- NEW: Style for the year dropdown container --- */
+.year-inputs {
+  display: flex;
+  gap: 10px; /* Adds space between the two dropdowns */
+  align-items: flex-start;
+}
+/* This is the container for a SINGLE label/dropdown pair */
+.year-inputs .form-group {
+  display: flex;
+  flex-direction: column; /* Stacks the label on top of its dropdown */
+  flex-grow: 1; /* Allows each group to grow and take up equal space */
+}
+
+/* This targets the label specifically inside the year-inputs container */
+.year-inputs .form-group label {
+  white-space: nowrap; /* Prevents the label text from wrapping */
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* This targets the select dropdown specifically */
+.year-inputs .form-group select {
+  width: 100%; /* Ensures the dropdown fills the available space in its column */
+}
+
+.status-display-wrapper {
+  background-color: #f0f0f0; /* A light gray to indicate it's disabled */
+  color: #333;
+  border: 1px solid #cccccc;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 42px; /* Match the height of other inputs */
+}
+
+/* Flex container for the icon and text */
+.status-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+/* The colored circle icon */
+.status-icon {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Color variations based on status */
+.status-display.active .status-icon {
+  background-color: #28a745; /* Green for Active */
+}
+.status-display.active {
+  color: #28a745;
+}
+
+.status-display.expired .status-icon {
+  background-color: #dc3545; /* Red for Expired */
+}
+.status-display.expired {
+  color: #dc3545;
+}
+.status-display.invalid .status-icon {
+  background-color: #375cff; /* Red for Expired */
+}
+.status-display.invalid {
+  color: #7472ff;
+}
+
+/* Make the disabled expiry date input look better */
+input[type="date"]:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+/* --- NEW & UPDATED Styles for Horizontal Dynamic Entries --- */
+
+/* This is the main container for a single qualification or certification entry */
+.dynamic-entry-horizontal {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens if needed */
+  gap: 10px; /* The space between each input field */
+  align-items: flex-end; /* Aligns items to the bottom, which looks best */
+  
+  background-color: #f7f9fc;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: relative; /* For the remove button */
+}
+
+/* 
+  This targets the form group *inside* our new horizontal container.
+  We use flex-grow to allow fields to take up available space.
+*/
+.dynamic-entry-horizontal .form-group {
+  flex: 1 1 150px; /* flex-grow, flex-shrink, flex-basis. Allows wrapping. */
+}
+
+/* Give the file input a bit more space */
+.dynamic-entry-horizontal .form-group.file-input {
+    flex-basis: 200px;
+}
+
+/* Reposition the remove button to the top right */
+.dynamic-entry-horizontal .remove-button {
+  position:static;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+}
+
+/* Ensure year inputs stay side-by-side but don't grow too large */
+.dynamic-entry-horizontal .year-inputs {
+  display: flex;
+  gap: 10px;
+}
+.dynamic-entry-horizontal .year-inputs .form-group {
+    min-width: 100px; /* Prevent them from becoming too small */
+}
+
+/* Adjust the add button style */
+.add-button {
+  display: block; /* Ensure it's on its own line */
+  font-weight: 600;
+  color: #00bfa5;
+}
+
+
+/* --- NEW: Styles for the Experience Section Header --- */
+
+.section-header {
+  display: flex;
+  justify-content: space-between; /* This is the magic! */
+  align-items: center; /* Vertically aligns the title and dropdown */
+  padding-bottom: 10px; /* Space above the bottom border */
+}
+
+/* The h2 inside the header no longer needs its own border or margin */
+.section-header > h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* 
+  Target the form-group for the dropdown specifically.
+  We give it a fixed width and remove its bottom margin.
+*/
+.section-header .form-group {
+  margin-bottom: 0;
+  min-width: 450px; /* Adjust width as needed */
+}
+
+/* ... (fee-setup-container and fee-selectors styles are the same) ... */
+
+/* --- NEW: Grid layout for the panels --- */
+.fee-panels-grid {
+    display: grid;
+    /* Create 4 responsive columns */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+/* Styling for a single fee setup panel */
+.fee-panel {
+  background-color: #ffffff; /* The "active" state background */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Softer shadow */
+}
+
+/* ========== THE FIX IS HERE: The Disabled State ========== */
+.fee-panel.disabled {
+  background-color: #f7f9fc; /* Light gray background for disabled state */
+  box-shadow: none;
+}
+
+/* Make all elements inside a disabled panel appear grayed out */
+.fee-panel.disabled h3,
+.fee-panel.disabled .form-group label {
+  color: #a0a0a0; /* Lighter text color */
+}
+
+/* Prevent interaction with inputs in a disabled panel */
+.fee-panel.disabled .form-group input,
+.fee-panel.disabled .form-group select {
+  pointer-events: none; /* Disables clicks */
+  background-color: #e9ecef; /* Standard disabled input color */
+}
+/* ======================================================== */
+
+
+.fee-panel h3 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 1.2em;
+  color: #000;
+}
+
+/* --- NEW: Style for the 3-column Country/Address grid --- */
+
+.address-and-country-grid {
+  display: grid;
+  /* Creates three columns of equal width */
+  grid-template-columns: 1fr 2fr 2fr; 
+  gap: 10px; /* The space between the fields */
+}
+
+/* --- You should already have this class, but ensure it's here --- */
+.form-group.full-width-span {
+  grid-column: 1 / -1; /* This makes the container span all columns of its parent grid */
+}
