@@ -12,51 +12,91 @@ const daysOfWeek = [
 ];
 const shifts = ["Morning", "Evening", "Night"];
 
-export default function TimingSetup() {
-  const [rows, setRows] = useState([{ day: "", activeShifts: [], times: {} }]);
+const shiftTimeRanges = {
+  Morning: { min: "08:00", max: "16:00" },
+  Evening: { min: "16:00", max: "23:59" },
+  Night: { min: "00:00", max: "08:00" },
+};
 
-  const handleDayChange = (index, day) => {
-    const updated = [...rows];
-    updated[index].day = day;
-    setRows(updated);
+export default function TimingSetup({ rows, setRows }) {
+  const handleDayChange = (id, day) => {
+    const updated = rows.map((row) => (row.id === id ? { ...row, day } : row));
+    setRows(updated); // This now calls the PARENT'S state updater
   };
 
-  const toggleShift = (index, shift) => {
-    const updated = [...rows];
-    if (updated[index].activeShifts.includes(shift)) {
-      updated[index].activeShifts = updated[index].activeShifts.filter(
-        (s) => s !== shift
-      );
-    } else {
-      updated[index].activeShifts.push(shift);
-    }
-    setRows(updated);
+  const toggleShift = (id, shift) => {
+    const updatedRows = rows.map((row) => {
+      if (row.id === id) {
+        // Create a copy of the specific row to modify it
+        const updatedRow = { ...row };
+        const isActive = updatedRow.activeShifts.includes(shift);
+
+        if (isActive) {
+          // IMMUTABLE REMOVAL from activeShifts
+          updatedRow.activeShifts = updatedRow.activeShifts.filter(
+            (s) => s !== shift
+          );
+          // Also remove the times for that shift
+          delete updatedRow.times[shift];
+        } else {
+          // IMMUTABLE ADDITION to activeShifts
+          updatedRow.activeShifts = [...updatedRow.activeShifts, shift];
+        }
+        return updatedRow;
+      }
+      return row;
+    });
+    setRows(updatedRows);
   };
 
-  const handleTimeChange = (index, shift, field, value) => {
-    const updated = [...rows];
-    if (!updated[index].times[shift]) updated[index].times[shift] = {};
-    updated[index].times[shift][field] = value;
-    setRows(updated);
+  const handleTimeChange = (id, shift, field, value) => {
+    const updatedRows = rows.map((row) => {
+      if (row.id === id) {
+        // Create deep copies to ensure React detects the change
+        const updatedRow = {
+          ...row,
+          times: {
+            ...row.times,
+            [shift]: {
+              ...row.times[shift],
+              [field]: value,
+            },
+          },
+        };
+
+        // --- Validation Logic ---
+        const { start, end } = updatedRow.times[shift];
+        if (field === "start" && start && end && start > end) {
+          updatedRow.times[shift].end = "";
+        }
+
+        return updatedRow;
+      }
+      return row;
+    });
+    setRows(updatedRows);
   };
 
   const addRow = () => {
-    setRows([...rows, { day: "", activeShifts: [], times: {} }]);
+    setRows([
+      ...rows,
+      { id: Date.now(), day: "", activeShifts: [], times: {} },
+    ]);
   };
 
-  const removeRow = (index) => {
-    setRows(rows.filter((_, i) => i !== index));
+  const removeRow = (id) => {
+    setRows(rows.filter((row) => row.id !== id));
   };
 
   return (
-    <div className="timing-setup">
-      {rows.map((row, index) => (
-        <div className="timing-row" key={index}>
+    <div className="dynamic-input-horizontal">
+      {rows.map((row) => (
+        <div className="timing-row" key={row.id}>
           {/* Day Selector */}
           <select
             className="day-dropdown"
             value={row.day}
-            onChange={(e) => handleDayChange(index, e.target.value)}
+            onChange={(e) => handleDayChange(row.id, e.target.value)}
           >
             <option value="">Select Day</option>
             {daysOfWeek.map((day) => (
@@ -65,16 +105,19 @@ export default function TimingSetup() {
               </option>
             ))}
           </select>
-
+          <div className="center">❖</div>
           {/* Shifts */}
           <div className="shift-container">
             {shifts.map((shift) => {
               const isActive = row.activeShifts.includes(shift);
+              const startTime = row.times[shift]?.start || "";
+              const endTime = row.times[shift]?.end || "";
+
               return (
                 <div
                   key={shift}
                   className={`shift-box ${isActive ? "selected" : ""}`}
-                  onClick={() => toggleShift(index, shift)}
+                  onClick={() => toggleShift(row.id, shift)}
                 >
                   <span>{shift}</span>
 
@@ -86,10 +129,10 @@ export default function TimingSetup() {
                     >
                       <input
                         type="time"
-                        value={row.times[shift]?.start || ""}
+                        value={startTime}
                         onChange={(e) =>
                           handleTimeChange(
-                            index,
+                            row.id,
                             shift,
                             "start",
                             e.target.value
@@ -99,9 +142,9 @@ export default function TimingSetup() {
                       <span>to</span>
                       <input
                         type="time"
-                        value={row.times[shift]?.end || ""}
+                        value={endTime || undefined}
                         onChange={(e) =>
-                          handleTimeChange(index, shift, "end", e.target.value)
+                          handleTimeChange(row.id, shift, "end", e.target.value)
                         }
                       />
                     </div>
@@ -114,19 +157,18 @@ export default function TimingSetup() {
           {/* Remove Row Button */}
           {rows.length > 1 && (
             <button
-              className="remove-row-btn"
+              className="remove-button"
               type="button"
-              onClick={() => removeRow(index)}
+              onClick={() => removeRow(row.id)}
             >
-              ❌
+              &ndash;
             </button>
           )}
         </div>
       ))}
-
       {rows.length < 7 && (
-        <button className="add-row-btn" type="button" onClick={addRow}>
-          ➕ Add Row
+        <button className="add-button" type="button" onClick={addRow}>
+          + Add Another Day
         </button>
       )}
     </div>

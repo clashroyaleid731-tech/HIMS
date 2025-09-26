@@ -10,7 +10,7 @@ min-height: 100vh;
 display: flex;
 justify-content: space-between;
 align-items: center;
-margin-bottom: 24px;
+margin-bottom: 10px;
 }
 
 .management-header h1 {
@@ -32,12 +32,14 @@ min-width: 250px;
 background-color: #ffffff;
 border: 1px solid #444;
 border-radius: 8px;
-padding: 24px;
+padding: 14px;
+padding-top: 6px;
+
 }
 
 /* Tabs Styling */
 .tabs {
-margin-bottom: 5px;
+margin-bottom: 3px;
 border-bottom: 1px solid #444;
 }
 
@@ -67,6 +69,9 @@ font-weight: bold;
 /* Content Area Styling (Simplified) */
 .content-area {
 min-height: 400px;
+flex-grow: 1;
+position: relative;
+overflow: visible;
 }
 
 /* Form Styling (Unchanged from before) */
@@ -78,15 +83,29 @@ min-height: 400px;
 .form-group input, .form-group select, .form-group textarea { background-color: #ffffff; color: #000000; border: 1px solid #000000; padding: 10px; border-radius: 4px; width: 100%; box-sizing: border-box; }
 .form-group input[type="radio"] { width: auto; margin-right: 10px; }
 .gender-group div { padding-top: 10px; }
-.form-group textarea { min-height: 80px; resize: vertical; }
+.form-group textarea { min-height: 225px; resize: vertical; margin-bottom: 2px; }
 
 
 /* List/Table Styling */
-.list-container { width: 100%; }
-.doctors-table { width: 100%; border-collapse: collapse; }
-.doctors-table th, .doctors-table td { padding: 12px; border-bottom: 1px solid #000000; text-align: left; }
+.list-container { width: 100%; display: block; max-height: 55vh; overflow-y: auto;}
+.doctors-table { width: 100%; border-collapse :collapse; border-spacing: 0; }
+.doctors-table th, .doctors-table td { padding: 10px; border-bottom: 1px solid #000000; text-align: left; word-wrap: break-word; }
 .doctors-table th { background-color: #ffffff; }
-.doctors-table tr:hover { background-color: #b7b7b7; }
+.doctors-table tr:hover { background-color: #dfdfdf; }
+.doctors-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #ffffff; 
+    z-index: 10; 
+  border-bottom: 2px solid #000000;
+}
+
+
+
+
+
+/* Optional: Add a hover effect to the entire row */
+
 
 /* NEW: Edit button styling */
 .edit-button {
@@ -172,7 +191,7 @@ font-weight: bold;
 cursor: pointer;
 padding: 8px 0; 
 align-self: flex-start; 
-margin-top: 8px;
+margin-top: 0;
 }
 
 .add-button:hover {
@@ -211,9 +230,9 @@ display: none;
 .form-section {
 flex: 0 0 100%;
 scroll-snap-align: start;
-padding: 5px;
+padding: 3px;
 box-sizing: border-box;
-overflow-y: auto;
+/* overflow-y: auto; */
 margin-right: 10px;
 }
 .modal-overlay {
@@ -372,7 +391,7 @@ color: #fff;
 /* This targets the label specifically inside the year-inputs container */
 .year-inputs .form-group label {
   white-space: nowrap; /* Prevents the label text from wrapping */
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   font-weight: bold;
   color: #000000;
 }
@@ -444,7 +463,6 @@ input[type="date"]:disabled {
   flex-wrap: wrap; /* Allows items to wrap on smaller screens if needed */
   gap: 10px; /* The space between each input field */
   align-items: flex-end; /* Aligns items to the bottom, which looks best */
-  
   background-color: #f7f9fc;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -457,23 +475,22 @@ input[type="date"]:disabled {
   This targets the form group *inside* our new horizontal container.
   We use flex-grow to allow fields to take up available space.
 */
-.dynamic-entry-horizontal .form-group {
-  flex: 1 1 150px; /* flex-grow, flex-shrink, flex-basis. Allows wrapping. */
-}
 
-/* Give the file input a bit more space */
-.dynamic-entry-horizontal .form-group.file-input {
-    flex-basis: 200px;
+.dynamic-entry-horizontal .form-group {
+  margin-bottom: 0;
+  flex: 1 1 150px; /* flex-grow, flex-shrink, flex-basis. Allows wrapping. */
 }
 
 /* Reposition the remove button to the top right */
 .dynamic-entry-horizontal .remove-button {
   position:static;
-  top: 10px;
   right: 10px;
   width: 28px;
   height: 28px;
   line-height: 28px;
+    transform: translateY(-20%);
+
+
 }
 
 /* Ensure year inputs stay side-by-side but don't grow too large */
@@ -482,7 +499,7 @@ input[type="date"]:disabled {
   gap: 10px;
 }
 .dynamic-entry-horizontal .year-inputs .form-group {
-    min-width: 100px; /* Prevent them from becoming too small */
+    min-width: 275px; /* Prevent them from becoming too small */
 }
 
 /* Adjust the add button style */
@@ -499,7 +516,7 @@ input[type="date"]:disabled {
   display: flex;
   justify-content: space-between; /* This is the magic! */
   align-items: center; /* Vertically aligns the title and dropdown */
-  padding-bottom: 10px; /* Space above the bottom border */
+  padding-bottom: 8px; /* Space above the bottom border */
 }
 
 /* The h2 inside the header no longer needs its own border or margin */
@@ -507,15 +524,57 @@ input[type="date"]:disabled {
   border-bottom: none;
   padding-bottom: 0;
   margin-bottom: 0;
+  margin-top: 0;
+
 }
 
-/* 
-  Target the form-group for the dropdown specifically.
-  We give it a fixed width and remove its bottom margin.
-*/
 .section-header .form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 0;
-  min-width: 450px; /* Adjust width as needed */
+  min-width: 370px; /* Adjust width as needed */
+  margin-right: 21px;
+}
+.section-header .form-group label {
+   flex-shrink: 0; /* Prevents the label from shrinking */
+  margin-bottom: 0; /* Remove the default bottom margin */
+  text-align: right; /* Aligns the text to the right for a clean look */
+  line-height: 1.2; /*adjust if needed*/
+    margin-bottom: 0;
+}
+
+
+
+
+
+.section-header-professional {
+  display: flex;
+  justify-content: space-between; /* This is the magic! */
+  align-items: center; /* Vertically aligns the title and dropdown */
+  /* Space above the bottom border */
+}
+
+/* The h2 inside the header no longer needs its own border or margin */
+.section-header > h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.section-header-professional .form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+  min-width: 389px; /* Adjust width as needed */
+  margin-right: 9px;
+}
+.section-header-professional .form-group label {
+    margin-bottom: 0;
 }
 
 /* ... (fee-setup-container and fee-selectors styles are the same) ... */
@@ -525,13 +584,13 @@ input[type="date"]:disabled {
     display: grid;
     /* Create 4 responsive columns */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
+    gap: 10px;
 }
 
 /* Styling for a single fee setup panel */
 .fee-panel {
   background-color: #ffffff; /* The "active" state background */
-  border: 1px solid #e0e0e0;
+  /* border: 1px solid #e0e0e0; */
   border-radius: 8px;
   padding: 24px;
   transition: all 0.3s ease-in-out;
@@ -561,7 +620,7 @@ input[type="date"]:disabled {
 
 .fee-panel h3 {
   margin-top: 0;
-  margin-bottom: 24px;
+  margin-bottom: 0;
   font-size: 1.2em;
   color: #000;
 }
@@ -579,3 +638,19 @@ input[type="date"]:disabled {
 .form-group.full-width-span {
   grid-column: 1 / -1; /* This makes the container span all columns of its parent grid */
 }
+.center{
+  align-items: flex-start;
+  justify-content: center;
+  display: flex;
+  margin-top: 8px;
+
+}
+
+/* .list-scroll-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto; 
+} */

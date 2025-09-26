@@ -1,6 +1,14 @@
 // src/components/DoctorManagement/DoctorList.js
 
-const DoctorList = ({ doctors, onEditClick, onDeleteClick }) => {
+import FeeDisplay from "../../Reuseables/FeeDisplay";
+import StatusToggle from "../../Reuseables/StatusToggle";
+
+const DoctorList = ({
+  doctors,
+  onEditClick,
+  onDeleteClick,
+  onStatusChange,
+}) => {
   return (
     <div className="list-container">
       {doctors.length > 0 ? (
@@ -8,19 +16,45 @@ const DoctorList = ({ doctors, onEditClick, onDeleteClick }) => {
           <thead>
             <tr>
               <th>Full Name</th>
-              <th>Specialization</th>
-              <th>Email</th>
               <th>Contact</th>
+              <th>Total Experience</th>
+              <th>Departments</th>
+              <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {doctors.map((doctor) => (
               <tr key={doctor.id}>
-                <td>{doctor.fullName}</td>
-                <td>{doctor.specialization}</td>
-                <td>{doctor.email}</td>
-                <td>{doctor.contactNumber}</td>
+                <td>
+                  <div className="doctor-name-cell">
+                    <span className="doctor-full-name">{doctor.fullName}</span>
+                    <span className="doctor-specialization">
+                      {doctor.specialization}
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <div className="doctor-name-cell">
+                    <span className="doctor-full-name">
+                      {doctor.contactNumber}
+                    </span>
+                    <span className="doctor-specialization">
+                      Emergency: {doctor.emergencyContactNumber}
+                    </span>
+                  </div>
+                </td>
+                <td>{doctor.totalExperience}</td>
+                <td>
+                  <FeeDisplay feeData={doctor.feeData} />
+                </td>
+                <td>
+                  <StatusToggle
+                    status={doctor.status}
+                    // Pass a function that calls the parent handler with this specific doctor
+                    onClick={() => onStatusChange(doctor)}
+                  />
+                </td>
                 <td>
                   <button
                     className="edit-button"

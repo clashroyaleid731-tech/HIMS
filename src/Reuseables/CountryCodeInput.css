@@ -1,0 +1,38 @@
+/* src/components/CountryCodeInput.css */
+
+/* This targets the main container of the phone number input */
+.PhoneInput {
+  display: flex;
+  align-items: center;
+}
+
+/* 
+  This targets the input field itself. We will make it match
+  your other form inputs.
+*/
+.PhoneInputInput {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1em;
+  /* Remove the default border that the library adds */
+  border-left: none; 
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* This targets the country select dropdown button */
+.PhoneInputCountry {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-right: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+}

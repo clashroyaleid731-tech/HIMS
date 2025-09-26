@@ -9,6 +9,7 @@ const SECTIONS = [
 import { useState } from "react";
 import FeeSetup from "../../Reuseables/FeeSetup";
 import TimingSetup from "../../Reuseables/TimingSetup";
+import CountryCodeInput from "../../Reuseables/CountryCodeInput";
 
 const DoctorForm7 = ({
   formData,
@@ -21,6 +22,8 @@ const DoctorForm7 = ({
   onDynamicListChange,
   onAddItem,
   onRemoveItem,
+  rows,
+  setRows,
 }) => {
   //   State to control which sections are visible
   const [visibleFeeSections, setVisibleFeeSections] = useState({
@@ -51,200 +54,192 @@ const DoctorForm7 = ({
           data-index="0"
           className="form-section"
         >
-          <h2>Personal Information</h2>
+          <div className="section-header">
+            <h2>Personal Information</h2>
+          </div>
           <div className="form-grid-tri">
             <div className="form-group">
-              {" "}
-              <label>Full Name</label>{" "}
+              <label>Name</label>
               <input
                 type="text"
                 name="fullName"
                 value={formData.fullName}
                 onChange={onInputChange}
                 placeholder="Enter Full Name"
-              />{" "}
+              />
             </div>
             <div className="form-group gender-group">
-              {" "}
-              <label>Gender</label>{" "}
+              <label>Gender</label>
               <div>
-                {" "}
                 <input
                   type="radio"
                   name="gender"
                   value="Male"
                   checked={formData.gender === "Male"}
                   onChange={onInputChange}
-                />{" "}
-                Male{" "}
+                />
+                Male
                 <input
                   type="radio"
                   name="gender"
                   value="Female"
                   checked={formData.gender === "Female"}
                   onChange={onInputChange}
-                />{" "}
-                Female{" "}
+                />
+                Female
                 <input
                   type="radio"
                   name="gender"
                   value="Other"
                   checked={formData.gender === "Other"}
                   onChange={onInputChange}
-                />{" "}
-                Other{" "}
-              </div>{" "}
+                />
+                Other
+              </div>
             </div>
             <div className="form-group">
-              {" "}
-              <label>Date of Birth</label>{" "}
+              <label>Date of Birth</label>
               <input
                 type="date"
                 name="dateOfBirth"
                 value={formData.dateOfBirth}
                 onChange={onInputChange}
-              />{" "}
+              />
             </div>
             <div className="form-group">
-              {" "}
-              <label>Marital Status</label>{" "}
+              <label>Marital Status</label>
               <select
                 name="maritalStatus"
                 value={formData.maritalStatus}
                 onChange={onInputChange}
               >
-                {" "}
-                <option value="">Select Marital Status</option>{" "}
-                <option value="Single">Single</option>{" "}
-                <option value="Married">Married</option>{" "}
-                <option value="Divorced">Divorced</option>{" "}
-                <option value="Widowed">Widowed</option>{" "}
-              </select>{" "}
+                <option value="">Select Marital Status</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="Widowed">Widowed</option>
+              </select>
             </div>
             <div className="form-group">
-              {" "}
-              <label>Blood Group</label>{" "}
+              <label>Blood Group</label>
               <select
                 name="bloodGroup"
                 value={formData.bloodGroup}
                 onChange={onInputChange}
               >
-                {" "}
                 <option value="">Select Blood Group</option>
                 <option value="A+">A+</option> <option value="A-">A-</option>
                 <option value="B+">B+</option> <option value="B-">B-</option>
-                <option value="O+">O+</option> <option value="O-">O-</option>{" "}
-                <option value="AB+">AB+</option>{" "}
+                <option value="O+">O+</option> <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
                 <option value="AB-">AB-</option>
-              </select>{" "}
+              </select>
             </div>
             <div className="form-group">
-              {" "}
-              <label>NIC</label>{" "}
+              <label>NIC</label>
               <input
                 type="text"
                 name="nic"
                 value={formData.nic}
                 onChange={onInputChange}
-                placeholder="Enter NIC"
-              />{" "}
+                placeholder="Enter National ID Card Number"
+              />
             </div>
             <div className="form-group">
-              {" "}
-              <label>Contact Number</label>{" "}
-              <input
-                type="text"
+              <label>Contact Number</label>
+              <CountryCodeInput
+                // type="text"
                 name="contactNumber"
                 value={formData.contactNumber}
-                onChange={onInputChange}
+                onChange={(value) =>
+                  onInputChange({
+                    target: { name: "contactNumber", value: value },
+                  })
+                }
                 placeholder="Enter Contact Number"
-              />{" "}
+              />
             </div>
             <div className="form-group">
-              {" "}
-              <label>Emergency Contact Number</label>{" "}
-              <input
-                type="text"
+              <label>Emergency Contact Number</label>
+              <CountryCodeInput
+                // type="text"
                 name="emergencyContactNumber"
                 value={formData.emergencyContactNumber}
-                onChange={onInputChange}
+                onChange={(value) =>
+                  onInputChange({
+                    target: { name: "emergencyContactNumber", value: value },
+                  })
+                }
                 placeholder="Enter Emergency Contact Number"
-              />{" "}
+              />
             </div>
             <div className="form-group">
-              {" "}
-              <label>Email</label>{" "}
+              <label>Email</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={onInputChange}
                 placeholder="Enter Email"
-              />{" "}
+              />
             </div>
             <div className="form-group">
-              {" "}
-              <label>Area / City</label>{" "}
+              <label>Area / City</label>
               <input
                 type="text"
                 name="city"
                 value={formData.city}
                 onChange={onInputChange}
                 placeholder="Enter Area / City"
-              />{" "}
+              />
             </div>
             <div className="form-group full-width-span">
               <div className="address-and-country-grid">
                 <div className="form-group">
-                  {" "}
-                  <label>Country</label>{" "}
+                  <label>Country</label>
                   <input
                     type="text"
                     name="country"
                     value={formData.country}
                     onChange={onInputChange}
                     placeholder="Enter Country"
-                  />{" "}
+                  />
                 </div>
                 <div className="form-group">
-                  {" "}
-                  <label> Current Address</label>{" "}
+                  <label> Current Address</label>
                   <input
                     type="text"
                     name="currentAddress"
                     value={formData.currentAddress}
                     onChange={onInputChange}
                     placeholder="Enter Home Address"
-                  />{" "}
+                  />
                 </div>
                 <div className="form-group">
-                  {" "}
-                  <label>Permanent Address</label>{" "}
+                  <label>Permanent Address</label>
                   <input
                     type="text"
                     name="permanentAddress"
                     value={formData.permanentAddress}
                     onChange={onInputChange}
                     placeholder="Enter Permanent Address"
-                  />{" "}
+                  />
                 </div>
               </div>
             </div>
             <div className="form-group">
-              {" "}
-              <label>Profile Picture</label>{" "}
-              <input type="file" name="profilePicture" />{" "}
+              <label>Profile Picture</label>
+              <input type="file" name="profilePicture" />
             </div>
           </div>
           <div className="form-group full-width">
-            {" "}
-            <label>About You</label>{" "}
+            <label>About You</label>
             <textarea
               name="aboutYou"
               value={formData.aboutYou}
               onChange={onInputChange}
               placeholder="A brief summary about you..."
-            />{" "}
+            />
           </div>
         </section>
 
@@ -253,10 +248,22 @@ const DoctorForm7 = ({
           data-index="1"
           className="form-section"
         >
-          <h2>Qualifications and Certifications</h2>
           <div>
             {/* --- LEFT COLUMN: QUALIFICATIONS --- */}
             <div className="split-column">
+              <div className="section-header-professional">
+                <h2>Professional Information</h2>
+                <div className="form-group">
+                  <label>Specialization</label>
+                  <input
+                    type="text"
+                    name="specialization"
+                    value={formData.specialization}
+                    onChange={onInputChange}
+                    placeholder="e.g.,Surgeons or etc."
+                  />
+                </div>
+              </div>
               <h2>Qualifications</h2>
               {formData.qualifications.map((qual) => (
                 <div key={qual.id} className="dynamic-entry-horizontal">
@@ -293,7 +300,6 @@ const DoctorForm7 = ({
                     />
                   </div>
                   <div className="year-inputs">
-                    {" "}
                     {/* A new wrapper for side-by-side layout */}
                     <div className="form-group">
                       <label>Start Year</label>
@@ -344,22 +350,6 @@ const DoctorForm7 = ({
                     </div>
                   </div>
                   <div className="form-group">
-                    <label>Specialization</label>
-                    <input
-                      type="text"
-                      value={qual.specialization}
-                      onChange={(e) =>
-                        onDynamicListChange(
-                          "qualifications",
-                          qual.id,
-                          "specialization",
-                          e.target.value
-                        )
-                      }
-                      placeholder="e.g.,Surgeons or etc."
-                    />
-                  </div>
-                  <div className="form-group">
                     <label>Country</label>
                     <input
                       type="text"
@@ -375,7 +365,7 @@ const DoctorForm7 = ({
                       placeholder="e.g , Pakistan"
                     />
                   </div>
-                  <div className="form-group file-input">
+                  <div className="form-group">
                     <label>Upload Qualification</label>
                     <input
                       type="file"
@@ -400,15 +390,13 @@ const DoctorForm7 = ({
                   )}
                 </div>
               ))}
-              {formData.qualifications.length < 5 && (
-                <button
-                  type="button"
-                  className="add-button"
-                  onClick={() => onAddItem("qualifications")}
-                >
-                  + Add Another Qualification
-                </button>
-              )}
+              <button
+                type="button"
+                className="add-button"
+                onClick={() => onAddItem("qualifications")}
+              >
+                + Add Another Qualification
+              </button>
             </div>
 
             {/* --- RIGHT COLUMN: CERTIFICATIONS --- */}
@@ -449,8 +437,7 @@ const DoctorForm7 = ({
                     />
                   </div>
                   <div className="form-group">
-                    {" "}
-                    <label>Issue Date</label>{" "}
+                    <label>Issue Date</label>
                     <input
                       type="date"
                       name="issueDate"
@@ -463,26 +450,23 @@ const DoctorForm7 = ({
                           e.target.value
                         );
                       }}
-                    />{" "}
+                    />
                   </div>
                   <div className="form-group">
-                    {" "}
-                    <label>Expiry Date (Auto)</label>{" "}
+                    <label>Expiry Date</label>
                     <input
                       type="date"
                       name="expiryDate"
                       value={cert.expiryDate}
-                      readOnly
-                      disabled
                       onChange={(e) => {
                         onDynamicListChange(
                           "certifications",
                           cert.id,
-                          "issueDate",
+                          "expiryDate",
                           e.target.value
                         );
                       }}
-                    />{" "}
+                    />
                   </div>
                   <div className="form-group">
                     <label>Status</label>
@@ -522,15 +506,13 @@ const DoctorForm7 = ({
                   )}
                 </div>
               ))}
-              {formData.certifications.length < 5 && (
-                <button
-                  type="button"
-                  className="add-button"
-                  onClick={() => onAddItem("certifications")}
-                >
-                  + Add Another Certificate
-                </button>
-              )}
+              <button
+                type="button"
+                className="add-button"
+                onClick={() => onAddItem("certifications")}
+              >
+                + Add Another Certificate
+              </button>
             </div>
           </div>
         </section>
@@ -543,43 +525,20 @@ const DoctorForm7 = ({
           <div className="section-header">
             <h2>Experience</h2>
             <div className="form-group">
-              {" "}
-              <label>Employment Type</label>{" "}
-              <select
-                name="employmentType"
-                value={formData.employmentType}
-                onChange={onInputChange}
-              >
-                {" "}
-                <option value="">Select</option>
-                <option value="Full-time employment">
-                  Full-time employment
-                </option>
-                <option value="Part-time employment">
-                  Part-time employment
-                </option>
-                <option value="Temporary employment">
-                  Temporary employment
-                </option>
-                <option value="Fixed-term employment">
-                  Fixed-term employment
-                </option>
-                <option value="Contract employment">Contract employment</option>
-                <option value="Freelance/Independent Contractor">
-                  Freelance/Independent Contractor
-                </option>
-                <option value="Internships">Internships</option>
-                <option value="Apprenticeship">Apprenticeship</option>
-                <option value="Casual employment">Casual employment</option>
-                <option value="Seasonal employment">Seasonal employment</option>
-              </select>
+              <label>Total Experience</label>
+              <input
+                type="text"
+                readOnly
+                disabled
+                value={formData.totalExperience || "Calculating...."}
+                placeholder="Years of Experience (Auto)"
+              />
             </div>
           </div>
           {formData.experience.map((exp, id) => (
             <div className="dynamic-entry-horizontal" key={exp.id}>
               <div className="form-group">
-                {" "}
-                <label>Organization Name</label>{" "}
+                <label>Organization Name</label>
                 <input
                   type="text"
                   value={exp.organizationName}
@@ -592,12 +551,10 @@ const DoctorForm7 = ({
                     )
                   }
                   placeholder="Enter org. name e.g , WONCA"
-                />{" "}
-              </div>{" "}
-              <br />
+                />
+              </div>
               <div className="form-group">
-                {" "}
-                <label>Designation</label>{" "}
+                <label>Designation</label>
                 <input
                   type="text"
                   name="designation"
@@ -611,12 +568,10 @@ const DoctorForm7 = ({
                     )
                   }
                   placeholder="Enter specific medical specialty or role"
-                />{" "}
-              </div>{" "}
-              <br />
+                />
+              </div>
               <div className="form-group">
-                {" "}
-                <label>Department</label>{" "}
+                <label>Department</label>
                 <input
                   type="text"
                   value={exp.department}
@@ -629,78 +584,89 @@ const DoctorForm7 = ({
                     )
                   }
                   placeholder="Enter your department."
-                />{" "}
-              </div>{" "}
-              <br />
-              <div className="year-inputs">
-                {" "}
-                <div className="form-group">
-                  <label>Start Year</label>
-                  <select
-                    value={exp.startYear}
-                    onChange={(e) =>
-                      onDynamicListChange(
-                        "experience",
-                        exp.id,
-                        "startYear",
-                        e.target.value
-                      )
-                    }
-                  >
-                    <option value="">Select</option>
-                    {years.map((year) => (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label>Finish Year</label>
-                  <select
-                    value={exp.endYear}
-                    onChange={(e) =>
-                      onDynamicListChange(
-                        "experience",
-                        exp.id,
-                        "endYear",
-                        e.target.value
-                      )
-                    }
-                    disabled={!exp.startYear}
-                  >
-                    <option value="">Select</option>
-                    {/* VALIDATION: Only show years >= the selected start year */}
-                    {years
-                      .filter((year) => year >= exp.startYear)
-                      .map((year) => (
-                        <option key={year} value={year}>
-                          {year}
-                        </option>
-                      ))}
-                  </select>
-                </div>
+                />
               </div>
-              <br />
               <div className="form-group">
-                {" "}
-                <label>Duration</label>{" "}
-                <input
-                  type="number"
-                  min={0}
-                  value={exp.duration}
+                <label>Employment Type</label>
+                <select
+                  name="employmentType"
+                  value={exp.employmentType}
                   onChange={(e) =>
                     onDynamicListChange(
                       "experience",
                       exp.id,
-                      "duration",
+                      "employmentType",
                       e.target.value
                     )
                   }
-                  placeholder="Enter your duration (can't be negative)."
-                />{" "}
+                >
+                  <option value="">Select</option>
+                  <option value="Full-time employment">
+                    Full-time employment
+                  </option>
+                  <option value="Part-time employment">
+                    Part-time employment
+                  </option>
+                  <option value="Temporary employment">
+                    Temporary employment
+                  </option>
+                  <option value="Fixed-term employment">
+                    Fixed-term employment
+                  </option>
+                  <option value="Contract employment">
+                    Contract employment
+                  </option>
+                  <option value="Freelance/Independent Contractor">
+                    Freelance/Independent Contractor
+                  </option>
+                  <option value="Internships">Internships</option>
+                  <option value="Apprenticeship">Apprenticeship</option>
+                  <option value="Casual employment">Casual employment</option>
+                  <option value="Seasonal employment">
+                    Seasonal employment
+                  </option>
+                </select>
               </div>
-              <br />
+              <div className="form-group">
+                <label>Start Year</label>
+                <input
+                  type="date"
+                  value={exp.startDate}
+                  onChange={(e) => {
+                    onDynamicListChange(
+                      "experience",
+                      exp.id,
+                      "startDate",
+                      e.target.value
+                    );
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label>End Year</label>
+                <input
+                  type="date"
+                  value={exp.finishDate}
+                  onChange={(e) => {
+                    onDynamicListChange(
+                      "experience",
+                      exp.id,
+                      "finishDate",
+                      e.target.value
+                    );
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label>Duration</label>
+                <input
+                  type="text"
+                  disabled
+                  readOnly
+                  value={exp.duration}
+                  placeholder="Automatically calculated"
+                />
+              </div>
               {formData.experience.length > 1 && (
                 <button
                   type="button"
@@ -712,15 +678,13 @@ const DoctorForm7 = ({
               )}
             </div>
           ))}
-          {formData.experience.length < 5 && (
-            <button
-              type="button"
-              className="add-button"
-              onClick={() => onAddItem("experience")}
-            >
-              + Add Another Experience
-            </button>
-          )}
+          <button
+            type="button"
+            className="add-button"
+            onClick={() => onAddItem("experience")}
+          >
+            + Add Another Experience
+          </button>
         </section>
 
         <section
@@ -728,8 +692,10 @@ const DoctorForm7 = ({
           data-index="3"
           className="form-section"
         >
-          <h2>Availability & Timings</h2>
-          <TimingSetup />
+          <div className="section-header">
+            <h2>Availability & Timings</h2>
+          </div>
+          <TimingSetup rows={rows} setRows={setRows} />
         </section>
 
         <section
@@ -737,7 +703,9 @@ const DoctorForm7 = ({
           data-index="4"
           className="form-section"
         >
-          <h2>Fees</h2>
+          <div className="section-header">
+            <h2>Fees</h2>
+          </div>
           <FeeSetup
             feeData={formData.feeData}
             onFeeDataChange={handleFeeDataChange}

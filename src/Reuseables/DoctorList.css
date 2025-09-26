@@ -1,0 +1,89 @@
+/* Add to your existing DoctorList.css or main stylesheet */
+
+.fee-display-container {
+  display: grid;
+  grid-template-columns: repeat(2,auto);
+  justify-content: start;
+  gap: 2px 10px; /* A small space between each fee type */
+  font-size: 0.9em;
+  width: 60%;
+  max-width: 300px;
+}
+
+.fee-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px; /* Space between the name, amount, and duration */
+  white-space: nowrap; /* Prevents text from wrapping to the next line */
+}
+
+.fee-name {
+  font-weight: bold;
+  color: #333;
+  border-radius: 50px;
+  border: 1px solid #ffffff;
+  padding: 2px 4px;
+  background-color: #e3e3e3;
+
+
+}
+
+
+
+
+/* This is the container for the two lines of text */
+.doctor-name-cell {
+  display: flex;
+  flex-direction: column; /* Stacks the name on top of the specialization */
+  gap: 2px; /* A very small space between the two lines */
+}
+
+/* This styles the main name */
+.doctor-name-cell .doctor-full-name {
+  font-weight: 600; /* Makes the name slightly bolder */
+  color: #000;
+}
+
+/* This is the elegant styling for the specialization */
+.doctor-name-cell .doctor-specialization {
+  font-size: 0.85em; /* Makes the text slightly smaller */
+  color: #6c757d; /* A professional-looking gray color */
+  font-style: bold; /* Adds an elegant touch */
+}
+
+.status-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 16px; /* Pill shape */
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 0.85em;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.status-toggle .status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* --- Active State --- */
+.status-toggle.active {
+  background-color: #eaf6ec; /* Light green background */
+  color: #28a745; /* Dark green text */
+}
+.status-toggle.active .status-dot {
+  background-color: #28a745; /* Green dot */
+}
+
+/* --- Inactive State --- */
+.status-toggle.inactive {
+  background-color: #fbecec; /* Light red background */
+  color: #dc3545; /* Dark red text */
+}
+.status-toggle.inactive .status-dot {
+  background-color: #dc3545; /* Red dot */
+}
