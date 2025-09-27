@@ -157,7 +157,7 @@ export default function TimingSetup({ rows, setRows }) {
           {/* Remove Row Button */}
           {rows.length > 1 && (
             <button
-              className="remove-button"
+              className="remove-button-timing"
               type="button"
               onClick={() => removeRow(row.id)}
             >

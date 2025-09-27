@@ -17,7 +17,7 @@ const initialFormState = {
   nic: "",
   dateOfBirth: "",
   maritalStatus: "",
-  gender: "Male",
+  gender: "",
   profilePicture: null,
   bloodGroup: "",
   country: "",
