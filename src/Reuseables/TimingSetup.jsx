@@ -12,11 +12,11 @@ const daysOfWeek = [
 ];
 const shifts = ["Morning", "Evening", "Night"];
 
-const shiftTimeRanges = {
-  Morning: { min: "08:00", max: "16:00" },
-  Evening: { min: "16:00", max: "23:59" },
-  Night: { min: "00:00", max: "08:00" },
-};
+// const shiftTimeRanges = {
+//   Morning: { min: "08:00", max: "16:00" },
+//   Evening: { min: "16:00", max: "23:59" },
+//   Night: { min: "00:00", max: "08:00" },
+// };
 
 export default function TimingSetup({ rows, setRows }) {
   const handleDayChange = (id, day) => {

@@ -22,7 +22,8 @@ import ListItemText from "@mui/material/ListItemText";
 // import MedicalServicesIcon from "@mui/icons-material/MedicalServices"; // Example icon for Doctors
 // import DashboardIcon from "@mui/icons-material/Dashboard";
 
-import DoctorManagement7 from "../Components/DoctorSection/DM7";
+import DoctorManagement7 from "./Components/DoctorSection/DM7";
+import PatientManagement from "./PatientComponents/PatientSection/PatientManagement";
 
 const drawerWidth = 240;
 
@@ -113,6 +114,18 @@ export default function MiniDrawer() {
   const menuItems = [
     { text: "Dashboard", view: "dashboard" },
     { text: "Doctors", view: "doctors" },
+    { text: "Patients", view: "patients" },
+    { text: "Appointments", view: "appointments" },
+    { text: "Invoices", view: "invoices" },
+    { text: "Precriptions", view: "precriptions" },
+    { text: "Certificates", view: "certificates" },
+    { text: "Procedure & Packages", view: "procedure & packages" },
+    { text: "Accounts", view: "accounts" },
+    { text: "Human Resources", view: "human resource" },
+    { text: "Corporate & Insurance", view: "corporate & insurance" },
+    { text: "Referrals", view: "referrals" },
+    { text: "Reports", view: "reports" },
+    { text: "Settings", view: "settings" },
   ];
 
   const handleDrawerOpen = () => {
@@ -143,7 +156,7 @@ export default function MiniDrawer() {
             {/* <MenuIcon /> */}
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            HIMS
           </Typography>
         </Toolbar>
       </AppBar>
@@ -214,57 +227,6 @@ export default function MiniDrawer() {
           ))}
         </List>
         <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={[
-                  {
-                    minHeight: 48,
-                    px: 2.5,
-                  },
-                  open
-                    ? {
-                        justifyContent: "initial",
-                      }
-                    : {
-                        justifyContent: "center",
-                      },
-                ]}
-              >
-                <ListItemIcon
-                  sx={[
-                    {
-                      minWidth: 0,
-                      justifyContent: "center",
-                    },
-                    open
-                      ? {
-                          mr: 3,
-                        }
-                      : {
-                          mr: "auto",
-                        },
-                  ]}
-                >
-                  {index % 2 === 0 ? "InboxIcon" : "MailIcon"}
-                </ListItemIcon>
-                <ListItemText
-                  primary={text}
-                  sx={[
-                    open
-                      ? {
-                          opacity: 1,
-                        }
-                      : {
-                          opacity: 0,
-                        },
-                  ]}
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
@@ -279,10 +241,103 @@ export default function MiniDrawer() {
             </Typography>
           </>
         )}
-
         {activeView === "doctors" && (
           // When 'doctors' is the active view, render your component
           <DoctorManagement7 />
+        )}
+        {activeView === "patients" && (
+          // When 'patients' is the active view, render your component
+          <PatientManagement />
+        )}
+        {activeView === "appointments" && (
+          <>
+            <Typography variant="h5" sx={{ marginBottom: 2 }}>
+              Appointments
+            </Typography>
+            <Typography paragraph>Welcome to Appointments</Typography>
+          </>
+        )}
+        {activeView === "invoices" && (
+          <>
+            <Typography variant="h5" sx={{ marginBottom: 2 }}>
+              Invoices
+            </Typography>
+            <Typography paragraph>Welcome to Invoices</Typography>
+          </>
+        )}
+        {activeView === "precriptions" && (
+          <>
+            <Typography variant="h5" sx={{ marginBottom: 2 }}>
+              Precriptions
+            </Typography>
+            <Typography paragraph>Welcome to Precriptions.</Typography>
+          </>
+        )}
+        {activeView === "certificates" && (
+          <>
+            <Typography variant="h5" sx={{ marginBottom: 2 }}>
+              Certificates
+            </Typography>
+            <Typography paragraph>Welcome to Certificates</Typography>
+          </>
+        )}
+        {activeView === "procedure & packages" && (
+          <>
+            <Typography variant="h5" sx={{ marginBottom: 2 }}>
+              Procedure & Packages
+            </Typography>
+            <Typography paragraph>Welcome to Procedure & Package</Typography>
+          </>
+        )}
+        {activeView === "accounts" && (
+          <>
+            <Typography variant="h5" sx={{ marginBottom: 2 }}>
+              Accoounts
+            </Typography>
+            <Typography paragraph>Welcome to Accounts</Typography>
+          </>
+        )}
+        {activeView === "human resource" && (
+          <>
+            <Typography variant="h5" sx={{ marginBottom: 2 }}>
+              Human resource
+            </Typography>
+            <Typography paragraph>Welcome to Human resource</Typography>
+          </>
+        )}
+        {activeView === "corporate & insurance" && (
+          <>
+            <Typography variant="h5" sx={{ marginBottom: 2 }}>
+              Corporate & Insurance
+            </Typography>
+            <Typography paragraph>
+              Welcome to Corporate and insurance
+            </Typography>
+          </>
+        )}
+        {activeView === "referrals" && (
+          <>
+            <Typography variant="h5" sx={{ marginBottom: 2 }}>
+              Referrals
+            </Typography>
+            <Typography paragraph>Welcome to referrals</Typography>
+          </>
+        )}
+        {activeView === "reports" && (
+          <>
+            <Typography variant="h5" sx={{ marginBottom: 2 }}>
+              Reports
+            </Typography>
+            <Typography paragraph>Welcome to reports</Typography>
+          </>
+        )}
+        {activeView === "settings" && (
+          <>
+            <Typography variant="h5" sx={{ marginBottom: 2 }}>
+              Settings
+            </Typography>
+            <Typography paragraph>Welcome to Settings</Typography>
+          </>
         )}
       </Box>
     </Box>

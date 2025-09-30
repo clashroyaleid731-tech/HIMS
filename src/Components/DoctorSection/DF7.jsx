@@ -10,6 +10,8 @@ import { useState } from "react";
 import FeeSetup from "../../Reuseables/FeeSetup";
 import TimingSetup from "../../Reuseables/TimingSetup";
 import CountryCodeInput from "../../Reuseables/CountryCodeInput";
+import Box from "@mui/material/Box";
+import { Grid, Typography } from "@mui/material";
 
 const DoctorForm7 = ({
   formData,
@@ -46,7 +48,7 @@ const DoctorForm7 = ({
   const years = Array.from({ length: 61 }, (_, i) => currentYear - i); // Creates an array from current year to 60 years ago
 
   return (
-    <div className="scroller-wrapper">
+    <Box className="scroller-wrapper">
       <div className="scroller-form-container">
         {/* --- SECTION 1: PERSONAL --- */}
         <section
@@ -54,11 +56,13 @@ const DoctorForm7 = ({
           data-index="0"
           className="form-section"
         >
-          <div className="section-header">
-            <h2>Personal Information</h2>
-          </div>
-          <div className="form-grid-tri">
-            <div className="form-group">
+          <Box className="section-header" mb={1}>
+            <Typography variant="h5" style={{ fontWeight: "bold" }}>
+              Personal Information
+            </Typography>
+          </Box>
+          <Grid className="form-grid-tri" coolumnSpacing={2}>
+            <Grid className="form-group" item xs={12} sm={6} md={4}>
               <label>Name</label>
               <input
                 type="text"
@@ -67,7 +71,7 @@ const DoctorForm7 = ({
                 onChange={onInputChange}
                 placeholder="Enter Full Name"
               />
-            </div>
+            </Grid>
             <div className="form-group gender-group">
               <label>Gender</label>
               <div>
@@ -231,7 +235,7 @@ const DoctorForm7 = ({
               <label>Profile Picture</label>
               <input type="file" name="profilePicture" />
             </div>
-          </div>
+          </Grid>
           <div className="form-group full-width">
             <label>About You</label>
             <textarea
@@ -727,7 +731,7 @@ const DoctorForm7 = ({
           </button>
         )}
       </footer>
-    </div>
+    </Box>
   );
 };
 

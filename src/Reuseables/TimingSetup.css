@@ -27,8 +27,7 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   min-width: 400px;
-
-    margin-bottom: 0;
+  margin-bottom: 0;
   flex: 1 1 150px;
 }
 
@@ -78,15 +77,29 @@
 }
 
 
-.remove-button {
-  position:static;
-  right: 12px;
-  width: 28px;
-  height: 28px;
-  line-height: 28px;
-    transform: translateY(20%);
+.remove-button-timing {
+background-color: #ff0000; 
+color: #ff8787; 
+border: 1px solid #ff0000;
+font-size: 1.2em;
+font-weight: bold;
+cursor: pointer;
+border-radius: 4px;
+width: 42px;
+height: 42px;
+padding: 0;
+line-height: 42px; 
+transition: all 0.2s ease-in-out;
+  position:relative;
+ width: 28px;
+ height: 28px;
+ line-height: 28px;
+ transform: translateY(20%);
+}
 
-
+.remove-button-timing:hover {
+background-color: #b20000;
+color:#ffa2a2;
 }
 
 

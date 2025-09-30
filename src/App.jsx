@@ -1,6 +1,6 @@
 import DoctorManagement from "./Components/DoctorSection/DoctorManagement";
 import DoctorManagement7 from "./Components/DoctorSection/DM7";
-import MiniDrawer from "./Reuseables/Drawer";
+import MiniDrawer from "./Drawer";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -30,8 +30,8 @@ function App() {
       <CssBaseline />
 
       {/* Now, we render the MiniDrawer as the main layout of our app */}
-      {/* <MiniDrawer /> */}
-      <DoctorManagement7 />
+      <MiniDrawer />
+      {/* <DoctorManagement7 /> */}
     </ThemeProvider>
   );
 }
